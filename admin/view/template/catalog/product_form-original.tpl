@@ -748,6 +748,10 @@
 </div>
 </div>
 <script type="text/javascript" src="view/javascript/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="view/javascript/jquery/ajaxupload.js"></script>
+<input type="hidden" id="token_id" value="<?php echo $token;?>">
+<input type="hidden" id="product_id" value="<?php echo isset($this->request->get['product_id'])?$this->request->get['product_id']:"";?>">
+<script type="text/javascript" src="view/javascript/simpleimgupload.js"></script>
 <script type="text/javascript"><!--
 	<?php foreach ($languages as $language) { ?>
 		CKEDITOR.replace('description<?php echo $language['language_id']; ?>', {
