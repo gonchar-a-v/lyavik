@@ -35,7 +35,7 @@ function addEventSimpleImageUpload(imageUploadId,imageUploadNum){
 
 $(document).ready(function() {
 	if ($('#product_id').val()){
-		$("#image").parent(".image").css("width","241px").children("img").wrap('<div id="simple-image-upload"></div>');
+		$("#input-image").parent(".image").css("width","241px").find("#speed-upload").wrap('<div id="simple-image-upload"></div>');
 		new AjaxUpload('simple-image-upload', {
 			action: 'index.php?route=common/filemanager/upload&token='+$("#token_id").val(),
 			name: 'image',
@@ -44,7 +44,7 @@ $(document).ready(function() {
 
 			onChange: function(file, extension) {
 				var product_id = $('#product_id').val();
-				$('#image').attr('value','data/products/'+product_id+'.'+extension);
+				$('#input-image').attr('value','catalog/'+product_id+'.'+extension);
 				this.setData({'directory': 'products','newFileName': product_id+'.'+extension});
 				this.submit();
 			},
@@ -55,10 +55,10 @@ $(document).ready(function() {
 			onComplete: function(file, json) {
 				if (json.success) {
 					$.ajax({
-						url: 'index.php?route=common/filemanager/image&token='+$("#token_id").val()+'&image=' + encodeURIComponent($('#image').attr('value')),
+						url: 'index.php?route=common/filemanager/image&token='+$("#token_id").val()+'&image=' + encodeURIComponent($('#input-image').attr('value')),
 						dataType: 'text',
 						success: function(text) {
-							$('#thumb').replaceWith('<img src="' + text + '" alt="" id="thumb" />');
+							$('#thumb').attr('src',text+'?'+new Date().getTime());
 						}
 					});
 				}
@@ -70,7 +70,7 @@ $(document).ready(function() {
 		});
 
 	};
-	if ($('#product_id').val()){
+	if ($('#product_id').val() && 0){
 		var imageNum = 0;
 		$("table#images").children("tbody").each(function(){
 			$(this).find(".image>img").wrap('<div id="simple-image-upload-'+imageNum+'"></div>');

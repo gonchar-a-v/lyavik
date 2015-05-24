@@ -219,7 +219,11 @@ class ControllerCommonFileManager extends Controller {
 		if (!is_dir($directory)) {
 			$json['error'] = $this->language->get('error_directory');
 		}
-
+		if (!isset($this->request->files['file'])){
+			if (isset($this->request->files['image'])){
+				$this->request->files['file'] = $this->request->files['image'];
+			}
+		}
 		if (!$json) {
 			if (!empty($this->request->files['file']['name']) && is_file($this->request->files['file']['tmp_name'])) {
 				// Sanitize the filename
@@ -410,4 +414,12 @@ class ControllerCommonFileManager extends Controller {
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
+
+	public function image() {
+		$this->load->model('tool/image');
+		if (isset($this->request->get['image'])) {
+			$this->response->setOutput($this->model_tool_image->resize(html_entity_decode($this->request->get['image'], ENT_QUOTES, 'UTF-8'), 100, 100));
+		}
+	}
+
 }

@@ -97,9 +97,12 @@
             <div class="tab-pane" id="tab-data">
               <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-image"><?php echo $entry_image; ?></label>
-                <div class="col-sm-10">
-                  <a href="" id="thumb-image" data-toggle="image" class="img-thumbnail"><img src="<?php echo $thumb; ?>" alt="" title="" data-placeholder="<?php echo $placeholder; ?>" /></a>
-                  <input type="hidden" name="image" value="<?php echo $image; ?>" id="input-image" />
+                <div class="col-sm-10 image">
+                  <a href="" id="thumb-image" data-toggle="image" class="img-thumbnail">
+					  <img id="thumb" src="<?php echo $thumb; ?>" alt="" title="" data-placeholder="<?php echo $placeholder; ?>" />
+				  </a>
+					<a href="#" onclick="return false;" id="speed-upload"><img src="/admin/view/image/checkmark.png" alt=""/></a>
+					<input type="hidden" name="image" value="<?php echo $image; ?>" id="input-image" />
                 </div>
               </div>            
               <div class="form-group">
@@ -914,7 +917,11 @@
       </div>
     </div>
   </div>
-  <script type="text/javascript"><!--
+<script type="text/javascript" src="view/javascript/jquery/ajaxupload.js"></script>
+<input type="hidden" id="token_id" value="<?php echo $token;?>">
+<input type="hidden" id="product_id" value="<?php echo isset($_GET['product_id'])?$_GET['product_id']:"";?>">
+<script type="text/javascript" src="view/javascript/simpleimgupload.js"></script>
+ <script type="text/javascript"><!--
 <?php foreach ($languages as $language) { ?>
 $('#input-description<?php echo $language['language_id']; ?>').summernote({height: 300});
 <?php } ?>
