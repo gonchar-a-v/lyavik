@@ -17,6 +17,6 @@ class ControllerPaymentCod extends Controller {
 			$this->load->model('checkout/order');
 
 			$this->model_checkout_order->addOrderHistory($this->session->data['order_id'], $this->config->get('cod_order_status_id'));
-		}*/
+		}
 	}
 }

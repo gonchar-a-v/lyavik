@@ -1,3 +1,7 @@
 2015-05-20 23:08:25 - PHP Notice:  Undefined index: country_id in /var/www/cdmydev13714/data/www/mydev.dp.ua/catalog/model/payment/cod.php on line 6
 2015-05-20 23:08:25 - PHP Notice:  Undefined index: zone_id in /var/www/cdmydev13714/data/www/mydev.dp.ua/catalog/model/payment/cod.php on line 6
 2015-05-20 23:08:27 - PHP Notice:  Error: E-Mail to required! in /var/www/cdmydev13714/data/www/mydev.dp.ua/system/library/mail.php on line 61
+2015-05-24 15:31:50 - PHP Notice:  Undefined index: country_id in E:\MyDoc\www\www--outwork\gonchar_motoshop\catalog\model\payment\cod.php on line 6
+2015-05-24 15:31:50 - PHP Notice:  Undefined index: zone_id in E:\MyDoc\www\www--outwork\gonchar_motoshop\catalog\model\payment\cod.php on line 6
+2015-05-24 15:33:46 - PHP Notice:  Undefined index: country_id in E:\MyDoc\www\www--outwork\gonchar_motoshop\catalog\model\payment\cod.php on line 6
+2015-05-24 15:33:46 - PHP Notice:  Undefined index: zone_id in E:\MyDoc\www\www--outwork\gonchar_motoshop\catalog\model\payment\cod.php on line 6
