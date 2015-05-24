@@ -1,5 +1,6 @@
 /.idea/
 *.htaccess
-config.php
-system/cache/
-image/cache/
+/config.php
+/admin/config.php
+/system/cache/
+/image/cache/
