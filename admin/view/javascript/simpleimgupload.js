@@ -8,7 +8,7 @@ function addEventSimpleImageUpload(imageUploadId,imageUploadNum){
 
 		onChange: function(file, extension) {
 			var product_id = $('#product_id').val()+"-"+imageUploadNum;
-			$('#image'+imageUploadNum).attr('value','data/products/'+product_id+'.'+extension);
+			$('#input-image'+imageUploadNum).attr('value','catalog/'+product_id+'.'+extension);
 			this.setData({'directory': 'products','newFileName': product_id+'.'+extension});
 			this.submit();
 		},
@@ -19,10 +19,10 @@ function addEventSimpleImageUpload(imageUploadId,imageUploadNum){
 		onComplete: function(file, json) {
 			if (json.success) {
 				$.ajax({
-					url: 'index.php?route=common/filemanager/image&token='+$("#token_id").val()+'&image=' + encodeURIComponent($('#image'+imageUploadNum).attr('value')),
+					url: 'index.php?route=common/filemanager/image&token='+$("#token_id").val()+'&image=' + encodeURIComponent($('#input-image'+imageUploadNum).attr('value')),
 					dataType: 'text',
 					success: function(text) {
-						$("#thumb"+imageUploadNum).attr("src",text);
+						$("a#thumb-image"+imageUploadNum).find('img').attr('src',text+'?'+new Date().getTime());
 					}
 				});
 			}
@@ -70,16 +70,16 @@ $(document).ready(function() {
 		});
 
 	};
-	if ($('#product_id').val() && 0){
+	if ($('#product_id').val()){
 		var imageNum = 0;
 		$("table#images").children("tbody").each(function(){
-			$(this).find(".image>img").wrap('<div id="simple-image-upload-'+imageNum+'"></div>');
+			$(this).find(".img-thumbnail>img").wrap('<div id="simple-image-upload-'+imageNum+'"></div>');
 			addEventSimpleImageUpload('simple-image-upload-'+imageNum,imageNum);
 			imageNum++;
 		});
-		$("table#images>tfoot a.button").on("click",function(){
+		$("table#images>tfoot button").on("click",function(){
 			var imageNum = image_row - 1;
-			$("table#images").children("tbody:last").find(".image>img").wrap('<div id="simple-image-upload-'+imageNum+'"></div>');
+			$("table#images").children("tbody:last").find(".img-thumbnail>img").wrap('<div id="simple-image-upload-'+imageNum+'"></div>');
 			addEventSimpleImageUpload("simple-image-upload-"+imageNum,imageNum);
 		});
 	};
