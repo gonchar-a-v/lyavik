@@ -19,7 +19,7 @@
       <div class="panel-body">
         <ul class="nav nav-tabs">
           <li class="active"><a href="#tab-order" data-toggle="tab"><?php echo $tab_order; ?></a></li>
-          <li style="display: none;"><a href="#tab-payment" data-toggle="tab"><?php echo $tab_payment; ?></a></li>
+          <li><a href="#tab-payment" data-toggle="tab"><?php echo $tab_payment; ?></a></li>
           <?php if ($shipping_method) { ?>
           <li><a href="#tab-shipping" data-toggle="tab"><?php echo $tab_shipping; ?></a></li>
           <?php } ?>
@@ -47,11 +47,11 @@
                   <button id="button-invoice" class="btn btn-success btn-xs"><i class="fa fa-cog"></i> <?php echo $button_generate; ?></button>
                   <?php } ?></td>
               </tr>
-              <tr style="display: none;">
+              <tr>
                 <td><?php echo $text_store_name; ?></td>
                 <td><?php echo $store_name; ?></td>
               </tr>
-              <tr style="display: none;">
+              <tr>
                 <td><?php echo $text_store_url; ?></td>
                 <td><a href="<?php echo $store_url; ?>" target="_blank"><?php echo $store_url; ?></a></td>
               </tr>
@@ -67,7 +67,7 @@
               </tr>
               <?php } ?>
               <?php if ($customer_group) { ?>
-              <tr style="display: none;">
+              <tr>
                 <td><?php echo $text_customer_group; ?></td>
                 <td><?php echo $customer_group; ?></td>
               </tr>
@@ -135,7 +135,7 @@
               </tr>
               <?php } ?>
               <?php if ($ip) { ?>
-              <tr style="display: none;">
+              <tr>
                 <td><?php echo $text_ip; ?></td>
                 <td><?php echo $ip; ?></td>
               </tr>
@@ -147,13 +147,13 @@
               </tr>
               <?php } ?>
               <?php if ($user_agent) { ?>
-              <tr style="display: none;">
+              <tr>
                 <td><?php echo $text_user_agent; ?></td>
                 <td><?php echo $user_agent; ?></td>
               </tr>
               <?php } ?>
               <?php if ($accept_language) { ?>
-              <tr style="display: none;">
+              <tr>
                 <td><?php echo $text_accept_language; ?></td>
                 <td><?php echo $accept_language; ?></td>
               </tr>
