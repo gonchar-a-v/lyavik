@@ -26,7 +26,7 @@
       </div>
 
       <div class="form-group required">
-        <label for="input-payment-email"><?php echo $entry_email; ?></label>
+        <label class="control-label" for="input-payment-email"><?php echo $entry_email; ?></label>
         <input type="text" name="email" value="<?php echo $email; ?>" placeholder="<?php echo $entry_email; ?>" id="input-payment-email" class="form-control" />
       </div>
       <div class="form-group required">
