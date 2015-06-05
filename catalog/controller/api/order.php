@@ -17,7 +17,7 @@ class ControllerApiOrder extends Controller {
 			if (!isset($this->session->data['payment_address'])) {
 				$json['error'] = $this->language->get('error_payment_address');
 			}
-/*
+
 			// Payment Method
 			if (!isset($this->session->data['payment_method'])) {
 				$json['error'] = $this->language->get('error_payment_method');
@@ -39,7 +39,7 @@ class ControllerApiOrder extends Controller {
 				unset($this->session->data['shipping_method']);
 				unset($this->session->data['shipping_methods']);
 			}
-*/
+
 			// Cart
 			if ((!$this->cart->hasProducts() && empty($this->session->data['vouchers'])) || (!$this->cart->hasStock() && !$this->config->get('config_stock_checkout'))) {
 				$json['error'] = $this->language->get('error_stock');
@@ -74,30 +74,30 @@ class ControllerApiOrder extends Controller {
 				$order_data['store_url'] = $this->config->get('config_url');
 
 				// Customer Details
-				/*$order_data['customer_id'] = $this->session->data['customer']['customer_id'];
-				$order_data['customer_group_id'] = $this->session->data['customer']['customer_group_id'];*/
+				$order_data['customer_id'] = $this->session->data['customer']['customer_id'];
+				$order_data['customer_group_id'] = $this->session->data['customer']['customer_group_id'];
 				$order_data['firstname'] = $this->session->data['customer']['firstname'];
-			/*	$order_data['lastname'] = $this->session->data['customer']['lastname'];*/
+				$order_data['lastname'] = $this->session->data['customer']['lastname'];
 				$order_data['email'] = $this->session->data['customer']['email'];
 				$order_data['telephone'] = $this->session->data['customer']['telephone'];
-			/*	$order_data['fax'] = $this->session->data['customer']['fax'];
-				$order_data['custom_field'] = $this->session->data['customer']['custom_field'];*/
+				$order_data['fax'] = $this->session->data['customer']['fax'];
+				$order_data['custom_field'] = $this->session->data['customer']['custom_field'];
 
 				// Payment Details
 				$order_data['payment_firstname'] = $this->session->data['payment_address']['firstname'];
-			/*	$order_data['payment_lastname'] = $this->session->data['payment_address']['lastname'];
+				$order_data['payment_lastname'] = $this->session->data['payment_address']['lastname'];
 				$order_data['payment_company'] = $this->session->data['payment_address']['company'];
 				$order_data['payment_address_1'] = $this->session->data['payment_address']['address_1'];
-				$order_data['payment_address_2'] = $this->session->data['payment_address']['address_2'];*/
+				$order_data['payment_address_2'] = $this->session->data['payment_address']['address_2'];
 				$order_data['payment_city'] = $this->session->data['payment_address']['city'];
-			/*	$order_data['payment_postcode'] = $this->session->data['payment_address']['postcode'];
+				$order_data['payment_postcode'] = $this->session->data['payment_address']['postcode'];
 				$order_data['payment_zone'] = $this->session->data['payment_address']['zone'];
 				$order_data['payment_zone_id'] = $this->session->data['payment_address']['zone_id'];
 				$order_data['payment_country'] = $this->session->data['payment_address']['country'];
 				$order_data['payment_country_id'] = $this->session->data['payment_address']['country_id'];
 				$order_data['payment_address_format'] = $this->session->data['payment_address']['address_format'];
 				$order_data['payment_custom_field'] = (isset($this->session->data['payment_address']['custom_field']) ? $this->session->data['payment_address']['custom_field'] : array());
-*//*
+
 				if (isset($this->session->data['payment_method']['title'])) {
 					$order_data['payment_method'] = $this->session->data['payment_method']['title'];
 				} else {
@@ -109,23 +109,23 @@ class ControllerApiOrder extends Controller {
 				} else {
 					$order_data['payment_code'] = '';
 				}
-*/
+
 				// Shipping Details
-			/*	if ($this->cart->hasShipping()) {
-					$order_data['shipping_firstname'] = $this->session->data['shipping_address']['firstname'];*/
-				/*	$order_data['shipping_lastname'] = $this->session->data['shipping_address']['lastname'];
+				if ($this->cart->hasShipping()) {
+					$order_data['shipping_firstname'] = $this->session->data['shipping_address']['firstname'];
+					$order_data['shipping_lastname'] = $this->session->data['shipping_address']['lastname'];
 					$order_data['shipping_company'] = $this->session->data['shipping_address']['company'];
 					$order_data['shipping_address_1'] = $this->session->data['shipping_address']['address_1'];
-					$order_data['shipping_address_2'] = $this->session->data['shipping_address']['address_2'];*/
-					/*$order_data['shipping_city'] = $this->session->data['shipping_address']['city'];*/
-					/*$order_data['shipping_postcode'] = $this->session->data['shipping_address']['postcode'];
+					$order_data['shipping_address_2'] = $this->session->data['shipping_address']['address_2'];
+					$order_data['shipping_city'] = $this->session->data['shipping_address']['city'];
+					$order_data['shipping_postcode'] = $this->session->data['shipping_address']['postcode'];
 					$order_data['shipping_zone'] = $this->session->data['shipping_address']['zone'];
 					$order_data['shipping_zone_id'] = $this->session->data['shipping_address']['zone_id'];
 					$order_data['shipping_country'] = $this->session->data['shipping_address']['country'];
 					$order_data['shipping_country_id'] = $this->session->data['shipping_address']['country_id'];
 					$order_data['shipping_address_format'] = $this->session->data['shipping_address']['address_format'];
 					$order_data['shipping_custom_field'] = (isset($this->session->data['shipping_address']['custom_field']) ? $this->session->data['shipping_address']['custom_field'] : array());
-*//*
+
 					if (isset($this->session->data['shipping_method']['title'])) {
 						$order_data['shipping_method'] = $this->session->data['shipping_method']['title'];
 					} else {
@@ -138,13 +138,13 @@ class ControllerApiOrder extends Controller {
 						$order_data['shipping_code'] = '';
 					}
 				} else {
-					$order_data['shipping_firstname'] = '';*/
-					/*$order_data['shipping_lastname'] = '';
+					$order_data['shipping_firstname'] = '';
+					$order_data['shipping_lastname'] = '';
 					$order_data['shipping_company'] = '';
 					$order_data['shipping_address_1'] = '';
-					$order_data['shipping_address_2'] = '';*/
-				/*	$order_data['shipping_city'] = '';*/
-					/*$order_data['shipping_postcode'] = '';
+					$order_data['shipping_address_2'] = '';
+					$order_data['shipping_city'] = '';
+					$order_data['shipping_postcode'] = '';
 					$order_data['shipping_zone'] = '';
 					$order_data['shipping_zone_id'] = '';
 					$order_data['shipping_country'] = '';
@@ -152,7 +152,7 @@ class ControllerApiOrder extends Controller {
 					$order_data['shipping_address_format'] = '';
 					$order_data['shipping_custom_field'] = array();
 					$order_data['shipping_method'] = '';
-					$order_data['shipping_code'] = '';*/
+					$order_data['shipping_code'] = '';
 				}
 
 				// Products
@@ -188,7 +188,7 @@ class ControllerApiOrder extends Controller {
 					);
 				}
 
-			/*	// Gift Voucher
+				// Gift Voucher
 				$order_data['vouchers'] = array();
 
 				if (!empty($this->session->data['vouchers'])) {
@@ -206,7 +206,7 @@ class ControllerApiOrder extends Controller {
 						);
 					}
 				}
-*/
+
 				// Order Totals
 				$this->load->model('extension/extension');
 
@@ -247,7 +247,7 @@ class ControllerApiOrder extends Controller {
 				}
 
 				$order_data['total'] = $total;
-/*
+
 				if (isset($this->request->post['affiliate_id'])) {
 					$subtotal = $this->cart->getSubTotal();
 
@@ -273,7 +273,7 @@ class ControllerApiOrder extends Controller {
 					$order_data['marketing_id'] = 0;
 					$order_data['tracking'] = '';
 				}
-*/
+
 				$order_data['language_id'] = $this->config->get('config_language_id');
 				$order_data['currency_id'] = $this->currency->getId();
 				$order_data['currency_code'] = $this->currency->getCode();
@@ -349,7 +349,7 @@ class ControllerApiOrder extends Controller {
 				if (!isset($this->session->data['payment_address'])) {
 					$json['error'] = $this->language->get('error_payment_address');
 				}
-/*
+
 				// Payment Method
 				if (!isset($this->session->data['payment_method'])) {
 					$json['error'] = $this->language->get('error_payment_method');
@@ -371,12 +371,12 @@ class ControllerApiOrder extends Controller {
 					unset($this->session->data['shipping_method']);
 					unset($this->session->data['shipping_methods']);
 				}
-*/
+
 				// Cart
-				/*if ((!$this->cart->hasProducts() && empty($this->session->data['vouchers'])) || (!$this->cart->hasStock() && !$this->config->get('config_stock_checkout'))) {
+				if ((!$this->cart->hasProducts() && empty($this->session->data['vouchers'])) || (!$this->cart->hasStock() && !$this->config->get('config_stock_checkout'))) {
 					$json['error'] = $this->language->get('error_stock');
 				}
-*/
+
 				// Validate minimum quantity requirements.
 				$products = $this->cart->getProducts();
 
@@ -406,30 +406,30 @@ class ControllerApiOrder extends Controller {
 					$order_data['store_url'] = $this->config->get('config_url');
 
 					// Customer Details
-					/*$order_data['customer_id'] = $this->session->data['customer']['customer_id'];
-					$order_data['customer_group_id'] = $this->session->data['customer']['customer_group_id'];*/
+					$order_data['customer_id'] = $this->session->data['customer']['customer_id'];
+					$order_data['customer_group_id'] = $this->session->data['customer']['customer_group_id'];
 					$order_data['firstname'] = $this->session->data['customer']['firstname'];
-				/*	$order_data['lastname'] = $this->session->data['customer']['lastname'];*/
+					$order_data['lastname'] = $this->session->data['customer']['lastname'];
 					$order_data['email'] = $this->session->data['customer']['email'];
 					$order_data['telephone'] = $this->session->data['customer']['telephone'];
-				/*	$order_data['fax'] = $this->session->data['customer']['fax'];
-					$order_data['custom_field'] = $this->session->data['customer']['custom_field'];*/
+					$order_data['fax'] = $this->session->data['customer']['fax'];
+					$order_data['custom_field'] = $this->session->data['customer']['custom_field'];
 
 					// Payment Details
 					$order_data['payment_firstname'] = $this->session->data['payment_address']['firstname'];
-					/*$order_data['payment_lastname'] = $this->session->data['payment_address']['lastname'];
+					$order_data['payment_lastname'] = $this->session->data['payment_address']['lastname'];
 					$order_data['payment_company'] = $this->session->data['payment_address']['company'];
 					$order_data['payment_address_1'] = $this->session->data['payment_address']['address_1'];
-					$order_data['payment_address_2'] = $this->session->data['payment_address']['address_2'];*/
+					$order_data['payment_address_2'] = $this->session->data['payment_address']['address_2'];
 					$order_data['payment_city'] = $this->session->data['payment_address']['city'];
-					/*$order_data['payment_postcode'] = $this->session->data['payment_address']['postcode'];
+					$order_data['payment_postcode'] = $this->session->data['payment_address']['postcode'];
 					$order_data['payment_zone'] = $this->session->data['payment_address']['zone'];
 					$order_data['payment_zone_id'] = $this->session->data['payment_address']['zone_id'];
 					$order_data['payment_country'] = $this->session->data['payment_address']['country'];
 					$order_data['payment_country_id'] = $this->session->data['payment_address']['country_id'];
 					$order_data['payment_address_format'] = $this->session->data['payment_address']['address_format'];
-					$order_data['payment_custom_field'] = $this->session->data['payment_address']['custom_field'];*/
-/*
+					$order_data['payment_custom_field'] = $this->session->data['payment_address']['custom_field'];
+
 					if (isset($this->session->data['payment_method']['title'])) {
 						$order_data['payment_method'] = $this->session->data['payment_method']['title'];
 					} else {
@@ -441,23 +441,23 @@ class ControllerApiOrder extends Controller {
 					} else {
 						$order_data['payment_code'] = '';
 					}
-*/
+
 					// Shipping Details
-					/*if ($this->cart->hasShipping()) {
-						$order_data['shipping_firstname'] = $this->session->data['shipping_address']['firstname'];*/
-						/*$order_data['shipping_lastname'] = $this->session->data['shipping_address']['lastname'];
+					if ($this->cart->hasShipping()) {
+						$order_data['shipping_firstname'] = $this->session->data['shipping_address']['firstname'];
+						$order_data['shipping_lastname'] = $this->session->data['shipping_address']['lastname'];
 						$order_data['shipping_company'] = $this->session->data['shipping_address']['company'];
 						$order_data['shipping_address_1'] = $this->session->data['shipping_address']['address_1'];
-						$order_data['shipping_address_2'] = $this->session->data['shipping_address']['address_2'];*/
-						/*$order_data['shipping_city'] = $this->session->data['shipping_address']['city'];*/
-						/*$order_data['shipping_postcode'] = $this->session->data['shipping_address']['postcode'];
+						$order_data['shipping_address_2'] = $this->session->data['shipping_address']['address_2'];
+						$order_data['shipping_city'] = $this->session->data['shipping_address']['city'];
+						$order_data['shipping_postcode'] = $this->session->data['shipping_address']['postcode'];
 						$order_data['shipping_zone'] = $this->session->data['shipping_address']['zone'];
 						$order_data['shipping_zone_id'] = $this->session->data['shipping_address']['zone_id'];
 						$order_data['shipping_country'] = $this->session->data['shipping_address']['country'];
 						$order_data['shipping_country_id'] = $this->session->data['shipping_address']['country_id'];
 						$order_data['shipping_address_format'] = $this->session->data['shipping_address']['address_format'];
-						$order_data['shipping_custom_field'] = $this->session->data['shipping_address']['custom_field'];*/
-/*
+						$order_data['shipping_custom_field'] = $this->session->data['shipping_address']['custom_field'];
+
 						if (isset($this->session->data['shipping_method']['title'])) {
 							$order_data['shipping_method'] = $this->session->data['shipping_method']['title'];
 						} else {
@@ -470,13 +470,13 @@ class ControllerApiOrder extends Controller {
 							$order_data['shipping_code'] = '';
 						}
 					} else {
-						$order_data['shipping_firstname'] = '';*/
-						/*$order_data['shipping_lastname'] = '';
+						$order_data['shipping_firstname'] = '';
+						$order_data['shipping_lastname'] = '';
 						$order_data['shipping_company'] = '';
 						$order_data['shipping_address_1'] = '';
-						$order_data['shipping_address_2'] = '';*/
-						/*$order_data['shipping_city'] = '';*/
-						/*$order_data['shipping_postcode'] = '';
+						$order_data['shipping_address_2'] = '';
+						$order_data['shipping_city'] = '';
+						$order_data['shipping_postcode'] = '';
 						$order_data['shipping_zone'] = '';
 						$order_data['shipping_zone_id'] = '';
 						$order_data['shipping_country'] = '';
@@ -484,7 +484,7 @@ class ControllerApiOrder extends Controller {
 						$order_data['shipping_address_format'] = '';
 						$order_data['shipping_custom_field'] = array();
 						$order_data['shipping_method'] = '';
-						$order_data['shipping_code'] = '';*/
+						$order_data['shipping_code'] = '';
 					}
 
 					// Products
@@ -519,7 +519,7 @@ class ControllerApiOrder extends Controller {
 							'reward'     => $product['reward']
 						);
 					}
-/*
+
 					// Gift Voucher
 					$order_data['vouchers'] = array();
 
@@ -538,7 +538,7 @@ class ControllerApiOrder extends Controller {
 							);
 						}
 					}
-*/
+
 					// Order Totals
 					$this->load->model('extension/extension');
 
@@ -579,29 +579,29 @@ class ControllerApiOrder extends Controller {
 					}
 
 					$order_data['total'] = $total;
-                /*
-                                    if (isset($this->request->post['affiliate_id'])) {
-                                        $subtotal = $this->cart->getSubTotal();
 
-                                        // Affiliate
-                                        $this->load->model('affiliate/affiliate');
+					if (isset($this->request->post['affiliate_id'])) {
+						$subtotal = $this->cart->getSubTotal();
 
-                                        $affiliate_info = $this->model_affiliate_affiliate->getAffiliate($this->request->post['affiliate_id']);
+						// Affiliate
+						$this->load->model('affiliate/affiliate');
 
-                                        if ($affiliate_info) {
-                                            $order_data['affiliate_id'] = $affiliate_info['affiliate_id'];
-                                            $order_data['commission'] = ($subtotal / 100) * $affiliate_info['commission'];
-                                        } else {
-                                            $order_data['affiliate_id'] = 0;
-                                            $order_data['commission'] = 0;
-                                        }
-                                    } else {
-                                        $order_data['affiliate_id'] = 0;
-                                        $order_data['commission'] = 0;
-                                    }
+						$affiliate_info = $this->model_affiliate_affiliate->getAffiliate($this->request->post['affiliate_id']);
 
-                                    $this->model_checkout_order->editOrder($order_id, $order_data);
-                */
+						if ($affiliate_info) {
+							$order_data['affiliate_id'] = $affiliate_info['affiliate_id'];
+							$order_data['commission'] = ($subtotal / 100) * $affiliate_info['commission'];
+						} else {
+							$order_data['affiliate_id'] = 0;
+							$order_data['commission'] = 0;
+						}
+					} else {
+						$order_data['affiliate_id'] = 0;
+						$order_data['commission'] = 0;
+					}
+
+					$this->model_checkout_order->editOrder($order_id, $order_data);
+
 					// Set the order history
 					if (isset($this->request->post['order_status_id'])) {
 						$order_status_id = $this->request->post['order_status_id'];
