@@ -389,7 +389,7 @@ class ControllerCommonFileManager extends Controller {
 
 					// Reverse sort the file array
 					rsort($files);
-
+                    usort($files, create_function('$a,$b', 'return filemtime($b) - filemtime($a);'));
 					foreach ($files as $file) {
 						// If file just delete
 						if (is_file($file)) {
