@@ -1,6 +1,6 @@
 <script language="Javascript" type="text/javascript">
     $(document).ready(function(){
-        $('#button-payment_address').trigger('click');
+        $('#payment-address').trigger('click');
     });
 </script>
 <form class="form-horizontal">

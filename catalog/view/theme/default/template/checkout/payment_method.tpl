@@ -1,30 +1,27 @@
-<script language="Javascript" type="text/javascript">
-    $(document).ready(function(){
-        $('#button-payment-method').trigger('click');
-    });
-</script>
 <?php if ($error_warning) { ?>
 <div class="alert alert-warning"><i class="fa fa-exclamation-circle"></i> <?php echo $error_warning; ?></div>
 <?php } ?>
+<div style="display: none;">
 <?php if ($payment_methods) { ?>
 <p><?php echo $text_payment_method; ?></p>
 <?php foreach ($payment_methods as $payment_method) { ?>
 <div class="radio">
-  <label>
-    <?php if ($payment_method['code'] == $code || !$code) { ?>
-    <?php $code = $payment_method['code']; ?>
-    <input type="radio" name="payment_method" value="<?php echo $payment_method['code']; ?>" checked="checked" />
-    <?php } else { ?>
-    <input type="radio" name="payment_method" value="<?php echo $payment_method['code']; ?>" checked="checked" />
-    <?php } ?>
-    <?php echo $payment_method['title']; ?>
-    <?php if ($payment_method['terms']) { ?>
-    (<?php echo $payment_method['terms']; ?>)
-    <?php } ?>
-  </label>
+<label>
+   <?php if ($payment_method['code'] == $code || !$code) { ?>
+   <?php $code = $payment_method['code']; ?>
+   <input type="radio" name="payment_method" value="<?php echo $payment_method['code']; ?>" checked="checked" />
+   <?php } else { ?>
+   <input type="radio" name="payment_method" value="<?php echo $payment_method['code']; ?>" checked="checked" />
+   <?php } ?>
+   <?php echo $payment_method['title']; ?>
+   <?php if ($payment_method['terms']) { ?>
+   (<?php echo $payment_method['terms']; ?>)
+   <?php } ?>
+ </label>
 </div>
 <?php } ?>
 <?php } ?>
+    </div>
 <p><strong><?php echo $text_comments; ?></strong></p>
 <p>
   <textarea name="comment" rows="8" class="form-control"><?php echo $comment; ?></textarea>
