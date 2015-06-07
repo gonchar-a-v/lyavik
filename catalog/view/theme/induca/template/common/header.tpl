@@ -101,10 +101,10 @@
         <li><a href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a></li>
         <?php } ?>
         <?php } ?>
-          <li><a href="/index.php?route=information/information&information_id=6">Оплата</a></li>
+          <li><a href="/oplata">Оплата</a></li>
           <li><a href="/index.php?route=product/special">Акции</a></li>
-          <li><a href="/index.php?route=information/information&information_id=4">Контакты</a></li>
-          <li><a href="/index.php?route=information/information&information_id=3">Доставка</a></li>
+          <li><a href="/kontaktu">Контакты</a></li>
+          <li><a href="/dostavka">Доставка</a></li>
       </ul>
     </div>
   </nav>

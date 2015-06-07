@@ -10,14 +10,14 @@ class ControllerCheckoutPaymentAddress extends Controller {
 		$data['text_loading'] = $this->language->get('text_loading');
 
 		$data['entry_firstname'] = $this->language->get('entry_firstname');
-		$data['entry_lastname'] = $this->language->get('entry_lastname');
+		/*$data['entry_lastname'] = $this->language->get('entry_lastname');
 		$data['entry_company'] = $this->language->get('entry_company');
 		$data['entry_address_1'] = $this->language->get('entry_address_1');
 		$data['entry_address_2'] = $this->language->get('entry_address_2');
-		$data['entry_postcode'] = $this->language->get('entry_postcode');
+		$data['entry_postcode'] = $this->language->get('entry_postcode');*/
 		$data['entry_city'] = $this->language->get('entry_city');
-		$data['entry_country'] = $this->language->get('entry_country');
-		$data['entry_zone'] = $this->language->get('entry_zone');
+		/*$data['entry_country'] = $this->language->get('entry_country');
+		$data['entry_zone'] = $this->language->get('entry_zone');*/
 
 		$data['button_continue'] = $this->language->get('button_continue');
 		$data['button_upload'] = $this->language->get('button_upload');
@@ -28,7 +28,7 @@ class ControllerCheckoutPaymentAddress extends Controller {
 			$data['address_id'] = $this->customer->getAddressId();
 		}
 
-		$this->load->model('account/address');
+		/*$this->load->model('account/address');
 
 		$data['addresses'] = $this->model_account_address->getAddresses();
 
@@ -65,7 +65,7 @@ class ControllerCheckoutPaymentAddress extends Controller {
 			$this->response->setOutput($this->load->view('default/template/checkout/payment_address.tpl', $data));
 		}
 	}
-
+*/
 	public function save() {
 		$this->load->language('checkout/checkout');
 
@@ -123,7 +123,7 @@ class ControllerCheckoutPaymentAddress extends Controller {
 				if ((utf8_strlen(trim($this->request->post['firstname'])) < 1) || (utf8_strlen(trim($this->request->post['firstname'])) > 32)) {
 					$json['error']['firstname'] = $this->language->get('error_firstname');
 				}
-
+/*
 				if ((utf8_strlen(trim($this->request->post['lastname'])) < 1) || (utf8_strlen(trim($this->request->post['lastname'])) > 32)) {
 					$json['error']['lastname'] = $this->language->get('error_lastname');
 				}
@@ -131,12 +131,12 @@ class ControllerCheckoutPaymentAddress extends Controller {
 				if ((utf8_strlen(trim($this->request->post['address_1'])) < 3) || (utf8_strlen(trim($this->request->post['address_1'])) > 128)) {
 					$json['error']['address_1'] = $this->language->get('error_address_1');
 				}
-
+*/
 				if ((utf8_strlen($this->request->post['city']) < 2) || (utf8_strlen($this->request->post['city']) > 32)) {
 					$json['error']['city'] = $this->language->get('error_city');
 				}
 
-				$this->load->model('localisation/country');
+				/*$this->load->model('localisation/country');
 
 				$country_info = $this->model_localisation_country->getCountry($this->request->post['country_id']);
 
@@ -151,7 +151,7 @@ class ControllerCheckoutPaymentAddress extends Controller {
 				if (!isset($this->request->post['zone_id']) || $this->request->post['zone_id'] == '') {
 					$json['error']['zone'] = $this->language->get('error_zone');
 				}
-
+*/
 				// Custom field validation
 				$this->load->model('account/custom_field');
 
