@@ -535,12 +535,18 @@ class ModelCheckoutOrder extends Model {
 				$data['shipping_address'] = str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))));
 
 				$this->load->model('tool/upload');
-
+$this->load->model('tool/image');
 				// Products
 				$data['products'] = array();
 
 				foreach ($order_product_query->rows as $product) {
 					$option_data = array();
+
+					$product_query = $this->db->query("SELECT image FROM " . DB_PREFIX . "product WHERE product_id = '" . (int)$product['product_id'] . "'");
+						foreach ($product_query->rows as $prodquery) { 
+						$image = $prodquery['image']; 
+						}
+						$thumb = $this->model_tool_image->resize($image, 60, 60);
 
 					$order_option_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_option WHERE order_id = '" . (int)$order_id . "' AND order_product_id = '" . (int)$product['order_product_id'] . "'");
 
@@ -564,6 +570,8 @@ class ModelCheckoutOrder extends Model {
 					}
 
 					$data['products'][] = array(
+						'thumb'     => $thumb,
+						'href'    	 => $this->url->link('product/product', 'product_id=' . $product['product_id']),
 						'name'     => $product['name'],
 						'model'    => $product['model'],
 						'option'   => $option_data,
@@ -767,7 +775,7 @@ class ModelCheckoutOrder extends Model {
 						$text .= $order_info['comment'] . "\n\n";
 					}
 
-					$mail = new Mail();
+					$mail = new Mail();					
 					$mail->protocol = $this->config->get('config_mail_protocol');
 					$mail->parameter = $this->config->get('config_mail_parameter');
 					$mail->smtp_hostname = $this->config->get('config_mail_smtp_host');

@@ -105,6 +105,7 @@
           <li><a href="/index.php?route=product/special">Акции</a></li>
           <li><a href="/kontaktu">Контакты</a></li>
           <li><a href="/dostavka">Доставка</a></li>
+          <li><a href="/sto">Мотосервиc</a></li>
       </ul>
     </div>
   </nav>
